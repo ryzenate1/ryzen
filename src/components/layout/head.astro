@@ -79,10 +79,9 @@ const cannonical = `${siteUrl}${pathname}`;
         { name: 'viewport', content: 'width=device-width' },
         { name: 'robots', content: 'index' },
         { name: 'generator', content: Astro.generator },
-        {
-          name: 'google-site-verification',
-          content: PUBLIC_GOOGLE_SITE_VERIFICATION,
-        },
+        ...(PUBLIC_GOOGLE_SITE_VERIFICATION
+          ? [{ name: 'google-site-verification', content: PUBLIC_GOOGLE_SITE_VERIFICATION }]
+          : []),
       ],
     }}
   />

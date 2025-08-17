@@ -2,8 +2,8 @@ import { defineConfig } from "astro/config";
 
 // Astro Integrations
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap"; // Required for sitemap generation
-import vercel from "@astrojs/vercel/static";
+import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 import partytown from "@astrojs/partytown";
 import tailwind from "@tailwindcss/vite";
 import robotsTxt from "astro-robots-txt";
@@ -12,15 +12,17 @@ import serviceWorker from "astrojs-service-worker";
 
 // Config
 export default defineConfig({
-  site: "https://ryzenstudio.com", // Required for sitemap, SEO, manifest
-  output: "static", // Changed to static output for Vercel free plan
-  // Adapter should be configured for static deployment.
-  adapter: vercel(),
+  site: "https://ryzenstudio.com",
+  // Set the output to 'static' for a static site generation
+  output: "static",
+  // The Vercel adapter will automatically detect the static output
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
   integrations: [
     react(),
     sitemap(),
     partytown({
-      // Moves third-party scripts off the main thread
       config: {
         forward: ["dataLayer.push"],
       },
@@ -47,16 +49,13 @@ export default defineConfig({
         },
       ],
     }),
-    serviceWorker({
-      strategies: "generateSW", // Or "injectManifest" if you customize
-      register: true,
-    }),
+    serviceWorker(),
   ],
 
   vite: {
     plugins: [tailwind()],
     build: {
-      target: "esnext", // Optimize for modern browsers
+      target: "esnext",
     },
   },
 });

@@ -1,6 +1,5 @@
 ---
-import { type Project } from '@/lib/sanity/get-projects';
-import { generateImageSizeProps } from '@/lib/sanity/sanity-image';
+import { type Project } from '@/lib/mock-data/projects';
 import { Image } from 'astro:assets';
 
 type Props = {
@@ -11,17 +10,16 @@ const { project } = Astro.props;
 ---
 
 <a
-  href={`/project/${project.slug.current}`}
+  href={`/project/${project.slug}`}
   aria-label={`Show ${project.name} project details`}
   class="border-neutrals-200/20 bg-radial-highlight relative flex-1 grow rounded-lg border p-4 transition-transform duration-300 focus-visible:-translate-y-2 focus-visible:scale-[1.01] focus-visible:drop-shadow-lg md:p-8 md:hover:-translate-y-2 md:hover:scale-[1.01] md:hover:drop-shadow-lg"
 >
   <Image
-    alt={project.poster.alt}
+    alt={project.name}
     class="aspect-video w-full rounded-md object-cover object-center"
-    style={{
-      backgroundColor: project.poster.asset.metadata.palette.dominant.background,
-    }}
-    {...generateImageSizeProps({ image: project.poster })}
+    src={project.image}
+    width="600"
+    height="400"
   />
   <article class="mt-8 flex flex-col items-center gap-y-2 text-center">
     <h3 class="text-2xl font-bold md:text-3xl">{project.name}</h3>

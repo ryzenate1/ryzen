@@ -1,7 +1,6 @@
 import { Container } from '@/components/ui/container';
 import { Icons } from '@/components/ui/icons';
-import { type Project } from '@/lib/sanity/get-projects';
-import { generateImageSizeProps } from '@/lib/sanity/sanity-image';
+import { type Project } from '@/lib/mock-data/projects';
 import { clamp, cn } from '@/lib/utils';
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
 import { cx } from 'class-variance-authority';
@@ -82,7 +81,7 @@ function ProjectSlide({
       className="relative aspect-2/3 w-[clamp(18rem,42vmin,26rem)] overflow-hidden rounded-md"
     >
       <a
-        href={`/project/${project.slug.current}`}
+        href={`/project/${project.slug}`}
         aria-label={isDisabled ? undefined : `Show ${project.name} project details`}
         aria-disabled={isDisabled}
         className={cx(
@@ -114,10 +113,12 @@ function ProjectSlide({
           )}
         </article>
         <motion.img
-          alt={project.poster.alt}
+          alt={project.name}
           loading="lazy"
           decoding="async"
-          {...generateImageSizeProps({ image: project.poster })}
+          src={project.image}
+          width="600"
+          height="400"
           className={cn(
             'pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700',
             isDisabled
@@ -126,7 +127,6 @@ function ProjectSlide({
           )}
           style={{
             objectPosition: imagePosition,
-            backgroundColor: project.poster.asset.metadata.palette.dominant.background,
           }}
         />
       </a>
@@ -326,7 +326,7 @@ function ProjectCarousel({ projects }: { projects: Project[] }) {
 
     const isWildcardFilterEnabledAndNoProjectTagFiltered =
       selectedFilters.includes(wildcardFilter) &&
-      !project.tags?.some((projectTag) => projectTagFilters.includes(projectTag));
+      !project.tags?.some((projectTag: string) => projectTagFilters.includes(projectTag as ProjectTagFilter));
     return isWildcardFilterEnabledAndNoProjectTagFiltered;
   });
 

@@ -6,10 +6,10 @@ const siteConfig = {
   backgroundColor: '#060918',
   themeColor: '#6919FF',
   email: 'hello@ryzenstudio.com',
-  url: 'https://ryzenstudio.com',
+  url: 'https://github.com/ryzenate1/ryzen',
   links: {
-    sourcecode: 'https://sourcecode.ryzenstudio.com',
-    github: 'https://github.ryzenstudio.com',
+    sourcecode: 'https://github.com/ryzenate1/ryzen',
+    github: 'https://github.com/ryzenate1/ryzen',
     instagram: 'https://instagram.ryzenstudio.com',
     linkedin: 'https://linkedin.ryzenstudio.com',
   },

@@ -44,13 +44,13 @@ const AnimatedText = () => {
     'font-extrabold tracking-tight uppercase leading-tight text-white';
 
   return (
-    <div className="flex flex-col items-center justify-center text-center">
+    <div className="flex flex-col items-center justify-center text-center transform translate-y-0.5">
       {/* Typing Animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="text-4xl sm:text-5xl md:text-6xl font-mono text-[#39FF14] mb-6 sm:mb-8 md:mb-10 whitespace-nowrap leading-tight"
+        className="text-3xl sm:text-5xl md:text-6xl font-mono text-[#39FF14] mb-6 sm:mb-8 md:mb-10 whitespace-nowrap leading-tight"
         style={{
           textShadow: '0 0 8px rgba(57, 255, 20, 0.6)',
           fontFamily: 'JetBrains Mono, monospace'
@@ -80,7 +80,7 @@ const AnimatedText = () => {
           initial="hidden"
           animate="visible"
           custom={0}
-          className={`${titleH1Class} text-6xl sm:text-7xl md:text-7xl lg:text-8xl text-center mb-2 whitespace-nowrap`}
+          className={`${titleH1Class} text-5xl sm:text-7xl md:text-7xl lg:text-8xl text-center mb-2 whitespace-nowrap`}
           style={{
             textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
             fontFamily: 'Poppins, sans-serif'
@@ -101,7 +101,7 @@ const AnimatedText = () => {
           initial="hidden"
           animate="visible"
           custom={1}
-          className={`${titleH1Class} text-6xl sm:text-7xl md:text-7xl lg:text-8xl text-center mb-2`}
+          className={`${titleH1Class} text-5xl sm:text-7xl md:text-7xl lg:text-8xl text-center mb-2`}
           style={{
             textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
             fontFamily: 'Poppins, sans-serif'
@@ -127,7 +127,7 @@ const AnimatedText = () => {
           initial="hidden"
           animate="visible"
           custom={2}
-          className={`${titleH1Class} text-5xl sm:text-6xl md:text-6xl lg:text-7xl text-center`}
+          className={`${titleH1Class} text-4xl sm:text-6xl md:text-6xl lg:text-7xl text-center`}
           style={{
             textShadow: '0 0 8px rgba(255, 255, 255, 0.5)',
             fontFamily: 'Poppins, sans-serif'

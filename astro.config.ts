@@ -37,6 +37,8 @@ const config = defineConfig({
   },
   image: {
     domains: ['cdn.sanity.io'],
+    // Use passthrough service to avoid Sharp dependency issues
+    service: { entrypoint: 'astro/assets/services/noop' },
   },
   experimental: {
     clientPrerender: true,
@@ -68,7 +70,7 @@ const config = defineConfig({
       display: 'standalone',
       prefer_related_applications: true,
       start_url: '/',
-      icon: './public/favicon.svg',
+      icon: './src/assets/images/favicon.svg',
       config: {
         outfile: 'site.webmanifest',
         iconPurpose: ['any', 'maskable'],

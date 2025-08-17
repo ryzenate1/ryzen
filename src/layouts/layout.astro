@@ -2,7 +2,7 @@
 import Footer from '@/components/layout/footer.astro';
 import Head from '@/components/layout/head.astro';
 import { Header } from '@/components/layout/header';
-import { LoadingScreen } from '@/components/layout/loading-screen';
+import { Bootloader } from '@/components/layout/bootloader';
 
 type Props = {
   title?: string;
@@ -14,7 +14,7 @@ const { title, description, openGraphImage } = Astro.props;
 ---
 
 <!doctype html>
-<!-- This site was developed by LOKKEE STUDIOS (https://lokkeestudios.com) -->
+<!-- This site was developed by RYZEN STUDIO (https://ryzenstudio.com) -->
 <html
   lang="en"
   class="font-inter [container-type:scroll-state] scroll-smooth scheme-dark"
@@ -33,7 +33,7 @@ const { title, description, openGraphImage } = Astro.props;
     >
       Skip to main content
     </a>
-    <LoadingScreen client:load />
+    <Bootloader client:load />
     <Header client:idle />
     <slot />
     <Footer />

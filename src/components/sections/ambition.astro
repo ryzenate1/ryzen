@@ -1,0 +1,449 @@
+---
+import { Container } from '@/components/ui/container';
+import Section from '@/components/ui/section.astro';
+---
+
+<Section id="ambition-zone" aria-labelledby="ambition-heading">
+  <Container>
+    <div class="flex flex-col items-center justify-            currentStep = 'age';
+            if (terminalInput) {
+              terminalInput.value = '';
+            }nter min-h-[80vh] text-center">
+      <div id="ambition-question" class="space-y-8">
+        <div class="space-y-4">
+          <h1
+            id="ambition-heading"
+            class="text-5xl/tight font-bold text-balance md:text-7xl/tight bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent"
+          >
+            Childhood Dreams 🌟
+          </h1>
+          <p class="text-neutrals-300 text-xl max-w-3xl mx-auto leading-relaxed">
+            Let's take a trip down memory lane... When you were a little kiddo with big dreams and wild imagination! ✨
+          </p>
+        </div>
+        
+        <div class="space-y-6">
+          <h2 class="text-2xl font-bold text-neutrals-100">
+            What was your ambition when you were a child? 🤔
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            <button 
+              class="ambition-btn bg-green-500 hover:bg-green-400 text-white p-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              data-ambition="hacker"
+            >
+              Hacker �
+            </button>
+            <button 
+              class="ambition-btn bg-blue-500 hover:bg-blue-400 text-white p-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              data-ambition="pilot"
+            >
+              Pilot ✈️
+            </button>
+            <button 
+              class="ambition-btn bg-purple-500 hover:bg-purple-400 text-white p-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              data-ambition="astronaut"
+            >
+              Astronaut �
+            </button>
+            <button 
+              class="ambition-btn bg-pink-500 hover:bg-pink-400 text-white p-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              data-ambition="artist"
+            >
+              Artist 🎨
+            </button>
+            <button 
+              class="ambition-btn bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              data-ambition="police"
+            >
+              Police �‍♂️
+            </button>
+            <button 
+              class="ambition-btn bg-red-500 hover:bg-red-400 text-white p-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              data-ambition="doctor"
+            >
+              Doctor 👩‍⚕️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hacker Terminal Game -->
+      <div id="hacker-terminal" class="hidden space-y-6">
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2">
+        </div>
+        
+        <div class="bg-black rounded-lg shadow-2xl max-w-6xl mx-auto overflow-hidden border border-gray-700">
+          <!-- macOS Terminal Header -->
+          <div class="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 bg-red-500 rounded-full hover:bg-red-400 cursor-pointer"></div>
+              <div class="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-400 cursor-pointer"></div>
+              <div class="w-3 h-3 bg-green-500 rounded-full hover:bg-green-400 cursor-pointer"></div>
+            </div>
+            <div class="text-gray-400 text-sm font-medium">Terminal — zsh — 120×50</div>
+            <div class="w-12"></div>
+          </div>
+          
+          <!-- Terminal Body -->
+          <div class="bg-black p-6 font-mono text-sm leading-relaxed min-h-[800px] max-h-[800px] overflow-y-auto relative">
+            <div id="terminal-lines" class="space-y-1"></div>
+            
+            <!-- Current input line -->
+            <div id="current-line" class="flex items-center hidden">
+              <span id="prompt" class="text-cyan-400"></span>
+              <input 
+                id="terminal-input" 
+                type="text" 
+                class="bg-transparent border-none outline-none text-white font-mono text-sm flex-1 ml-2 caret-white"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            
+            <!-- Blinking cursor -->
+            <div id="cursor" class="w-2 h-5 bg-white animate-pulse inline-block"></div>
+          </div>
+        </div>
+        
+        <div class="flex gap-4 justify-center">
+          <button 
+            id="back-to-ambitions"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2"
+          >
+            <span>←</span> Back to Dreams
+          </button>
+          <button 
+            id="restart-terminal"
+            class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
+          >
+            Restart Demo
+          </button>
+        </div>
+      </div>
+
+      <div id="ambition-response" class="hidden space-y-8">
+        <div class="space-y-4">
+          <h2 
+            id="response-text"
+            class="text-4xl/tight font-bold text-balance md:text-6xl/tight text-primary"
+          >
+            <!-- Response will be inserted here -->
+          </h2>
+          <p id="response-subtext" class="text-neutrals-300 text-xl max-w-3xl mx-auto leading-relaxed">
+            <!-- Subtext will be inserted here -->
+          </p>
+        </div>
+        
+        <div class="flex gap-4 justify-center flex-wrap">
+          <button 
+            id="back-home-btn"
+            class="bg-gradient-to-r from-primary to-purple-500 hover:from-purple-500 hover:to-primary text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+          >
+            Back to Reality 🏠
+          </button>
+          <button 
+            id="explore-more-btn"
+            class="bg-gradient-to-r from-green-500 to-blue-500 hover:from-blue-500 hover:to-green-500 text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+          >
+            More Fun? 🎮
+          </button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ambitionBtns = document.querySelectorAll('.ambition-btn');
+    const ambitionQuestion = document.getElementById('ambition-question');
+    const ambitionResponse = document.getElementById('ambition-response');
+    const hackerTerminal = document.getElementById('hacker-terminal');
+    const responseText = document.getElementById('response-text');
+    const responseSubtext = document.getElementById('response-subtext');
+    const backHomeBtn = document.getElementById('back-home-btn');
+    const exploreMoreBtn = document.getElementById('explore-more-btn');
+    const backToAmbitionsBtn = document.getElementById('back-to-ambitions');
+    const terminalInput = document.getElementById('terminal-input') as HTMLInputElement;
+    const terminalLines = document.getElementById('terminal-lines');
+
+    let hackerName = '';
+    let hackerAge = '';
+    let currentStep = 'name'; // name -> age -> ready -> nasa
+
+    const macPrompt = '<span class="text-cyan-400">ryzen@MacBook-Pro</span><span class="text-white">:</span><span class="text-blue-400">~/hacker-dreams</span><span class="text-white">$ </span>';
+
+    const hackerCommands = [
+      'ls -la /System/Library/CoreServices/',
+      'sudo nmap -sS -O target.nasa.gov',
+      'ssh -o StrictHostKeyChecking=no admin@nasa-satellite.gov',
+      'cat /etc/passwd | grep admin',
+      'python3 exploit.py --target nasa.gov',
+      'hydra -l admin -P wordlist.txt nasa.gov ssh',
+      './metasploit_nasa_exploit.rb',
+      'nc -lvp 4444',
+      'echo "Gaining access to satellite systems..."',
+      'sudo ./nasa_backdoor --install',
+      'curl -X POST https://nasa.gov/api/satellites/control',
+      'python3 -c "import socket; s=socket.socket(); s.connect((\'nasa.gov\', 22))"',
+      'echo "Bypassing NASA firewall..." && sleep 2',
+      'openssl s_client -connect nasa.gov:443',
+      'sudo tcpdump -i en0 host nasa.gov',
+      './quantum_decrypt.py --file nasa_secrets.enc'
+    ];
+
+    const nasaHackResults = [
+      '🛰️  Accessing NASA satellite control systems...',
+      '🔐  Bypassing quantum encryption protocols...',
+      '🚀  Injecting payload into Mars rover communication...',
+      '⚡  Overriding Houston mission control...',
+      '🛸  UFO database unlocked! 👽',
+      '🌍  Earth defense systems compromised...',
+      '🚨  WARNING: FBI cyber division alerted!',
+      '💨  Deploying digital smoke screen...',
+      '🥷  Vanishing into the dark web...',
+      '✅  Mission accomplished! You\'re officially a legend!'
+    ];
+
+    function addMacTerminalLine(command: string, output = '', isCommand = true) {
+      const line = document.createElement('div');
+      if (isCommand) {
+        line.innerHTML = `${macPrompt}<span class="text-green-400">${command}</span>`;
+      } else {
+        line.innerHTML = `<div class="text-white mb-1">${output}</div>`;
+      }
+      terminalLines?.appendChild(line);
+      if (terminalLines) {
+        terminalLines.scrollTop = terminalLines.scrollHeight;
+      }
+    }
+
+    function addSystemMessage(message: string, color = 'text-yellow-400') {
+      const line = document.createElement('div');
+      line.innerHTML = `<div class="${color} my-1">${message}</div>`;
+      terminalLines?.appendChild(line);
+      if (terminalLines) {
+        terminalLines.scrollTop = terminalLines.scrollHeight;
+      }
+    }
+
+    function handleHackerInput(input: string) {
+      // Show the input as if user typed it
+      const inputLine = document.createElement('div');
+      inputLine.innerHTML = `<span class="text-white">${input}</span>`;
+      terminalLines?.appendChild(inputLine);      if (currentStep === 'name') {
+        hackerName = input;
+        setTimeout(() => {
+          addMacTerminalLine(`echo "Nice to meet you, ${hackerName}!"`);
+          addSystemMessage(`Nice to meet you, ${hackerName}! 😎`);
+          addMacTerminalLine('read -p "How old are you? " AGE');
+          addSystemMessage('How old are you? ', 'text-yellow-400');
+          currentStep = 'age';
+          terminalInput.value = '';
+        }, 800);
+        
+      } else if (currentStep === 'age') {
+        hackerAge = input;
+        setTimeout(() => {
+          addMacTerminalLine(`echo "${hackerAge}? Perfect age for digital rebellion!"`);
+          addSystemMessage(`${hackerAge}? Perfect age for digital rebellion! 🔥`);
+          setTimeout(() => {
+            addMacTerminalLine('echo "Ready to hack the world? Your childhood dream is about to come true!"');
+            addSystemMessage('Ready to hack the world? Your childhood dream is about to come true! 🚀');
+            addMacTerminalLine('read -p "Should we hack NASA computers together? [y/n]: " NASA_HACK');
+            addSystemMessage('Should we hack NASA computers together? [y/n]: ', 'text-yellow-400');
+            currentStep = 'nasa';
+            if (terminalInput) {
+              terminalInput.value = '';
+            }
+          }, 1500);
+        }, 800);
+        
+      } else if (currentStep === 'nasa') {
+        const response = input.toLowerCase().trim();
+        if (response === 'y' || response === 'yes') {
+          addMacTerminalLine('echo "EXCELLENT! Initiating NASA hack protocol..."');
+          addSystemMessage('EXCELLENT! Initiating NASA hack protocol... 😈');
+          if (terminalInput) {
+            terminalInput.style.display = 'none';
+          }
+          
+          // Show realistic hacking sequence
+          let commandIndex = 0;
+          const executeNextCommand = () => {
+            if (commandIndex < hackerCommands.length) {
+              setTimeout(() => {
+                addMacTerminalLine(hackerCommands[commandIndex] || '');
+                
+                // Add realistic output for some commands
+                setTimeout(() => {
+                  if (commandIndex < nasaHackResults.length) {
+                    addSystemMessage(nasaHackResults[commandIndex] || '', 'text-green-400');
+                  } else {
+                    addSystemMessage('...processing...', 'text-gray-400');
+                  }
+                  commandIndex++;
+                  executeNextCommand();
+                }, Math.random() * 1000 + 500);
+              }, 200);
+            } else {
+              setTimeout(() => {
+                addSystemMessage('🎉 MISSION ACCOMPLISHED! 🎉', 'text-yellow-400');
+                addSystemMessage('Congratulations! You\'re officially a hacker now! (In simulation mode 😄)', 'text-green-400');
+                addMacTerminalLine('echo "Remember: With great power comes great responsibility!"');
+                addSystemMessage('Remember: With great power comes great responsibility! 💫', 'text-cyan-400');
+              }, 2000);
+            }
+          };
+          executeNextCommand();
+          
+        } else if (response === 'n' || response === 'no') {
+          addMacTerminalLine('echo "Aww, why not?"');
+          addSystemMessage('Aww, why not? 😢', 'text-yellow-400');
+          addMacTerminalLine('echo "Don\'t worry, it\'s just a simulation!"');
+          addSystemMessage('Don\'t worry, it\'s just a simulation! 🥺', 'text-cyan-400');
+          addMacTerminalLine('echo "Maybe next time when you\'re feeling more adventurous..."');
+          addSystemMessage('Maybe next time when you\'re feeling more adventurous... 😊', 'text-green-400');
+          if (terminalInput) {
+            terminalInput.style.display = 'none';
+          }
+        } else {
+          addSystemMessage('Please enter "y" for yes or "n" for no', 'text-red-400');
+          if (terminalInput) {
+            terminalInput.value = '';
+          }
+        }
+      }
+    }
+
+    const responses = {
+      hacker: {
+        text: "A Hacker! 💻⚡",
+        subtext: "You wanted to dive into the digital world and unlock its secrets! Time to live that dream... Let's see if you're ready for the underground! 😈"
+      },
+      doctor: {
+        text: "A Doctor! 👩‍⚕️✨",
+        subtext: "Aww, you wanted to save lives and heal people! That's so sweet! 💕 I bet you would have been amazing at it. Now look at you - saving websites from bad design instead! 😄"
+      },
+      pilot: {
+        text: "A Pilot! ✈️☁️",
+        subtext: "Flying high in the sky! 🌤️ You dreamed of touching clouds and seeing the world from above. Now you're flying high with your career instead! Still reaching for the sky! 🚀"
+      },
+      astronaut: {
+        text: "An Astronaut! 🚀🌕",
+        subtext: "To infinity and beyond! 🌌 You dreamed of exploring space and walking on the moon! Well, now you're exploring the digital universe instead! Still pretty cosmic! ✨"
+      },
+      police: {
+        text: "A Police Officer! �‍♂️�",
+        subtext: "You wanted to protect and serve! 🦸‍♀️ Fighting crime and keeping everyone safe! Now you're probably protecting websites from hackers and serving up great designs! 😎"
+      },
+      artist: {
+        text: "An Artist! 🎨🖼️",
+        subtext: "A creative soul from the very beginning! 🌈 You were born to create beautiful things, and guess what? You're still doing it! Some dreams do come true! 💫"
+      }
+    };
+
+    ambitionBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ambition = btn.getAttribute('data-ambition') as keyof typeof responses;
+        
+        if (ambition === 'hacker') {
+          // Show hacker terminal instead of normal response
+          ambitionQuestion?.classList.add('animate-fadeOut');
+          setTimeout(() => {
+            ambitionQuestion?.classList.add('hidden');
+            hackerTerminal?.classList.remove('hidden');
+            hackerTerminal?.classList.add('animate-fadeIn');
+            terminalInput?.focus();
+          }, 500);
+          
+        } else {
+          // Normal response for other ambitions
+          ambitionQuestion?.classList.add('animate-fadeOut');
+          
+          setTimeout(() => {
+            ambitionQuestion?.classList.add('hidden');
+            responseText!.innerHTML = responses[ambition].text;
+            responseSubtext!.innerHTML = responses[ambition].subtext;
+            ambitionResponse?.classList.remove('hidden');
+            ambitionResponse?.classList.add('animate-fadeIn');
+          }, 500);
+        }
+      });
+    });
+
+    // Terminal input handler
+    terminalInput?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        const input = terminalInput.value.trim();
+        if (input) {
+          handleHackerInput(input);
+        }
+      }
+    });
+
+    // Clear terminal functionality
+  // If you want a clear/reset button, add it to the UI and use this logic:
+  // const clearTerminalBtn = document.getElementById('clear-terminal');
+  // clearTerminalBtn?.addEventListener('click', () => {
+  //   terminalLines!.innerHTML = `<div class="text-yellow-400">What's your hacker alias? </div>`;
+  //   currentStep = 'name';
+  //   hackerName = '';
+  //   hackerAge = '';
+  //   terminalInput!.value = '';
+  //   terminalInput!.style.display = 'block';
+  // });
+
+    // Back to ambitions from hacker terminal
+    backToAmbitionsBtn?.addEventListener('click', () => {
+      hackerTerminal?.classList.add('animate-fadeOut');
+      setTimeout(() => {
+        hackerTerminal?.classList.add('hidden');
+        hackerTerminal?.classList.remove('animate-fadeOut');
+        ambitionQuestion?.classList.remove('hidden');
+        ambitionQuestion?.classList.add('animate-fadeIn');
+        // Reset terminal completely
+        if (terminalLines) {
+          terminalLines.innerHTML = `<div class="text-yellow-400">What's your hacker alias? </div>`;
+        }
+        currentStep = 'name';
+        hackerName = '';
+        hackerAge = '';
+        if (terminalInput) {
+          terminalInput.value = '';
+          terminalInput.style.display = 'block';
+        }
+      }, 500);
+    });
+
+    backHomeBtn?.addEventListener('click', () => {
+      window.location.href = '/';
+    });
+
+    exploreMoreBtn?.addEventListener('click', () => {
+      window.location.href = '/fun';
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fadeOut {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+</style>

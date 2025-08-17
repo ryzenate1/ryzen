@@ -14,8 +14,8 @@ if (!projectId || !dataset)
   );
 
 const config = defineConfig({
-  name: 'lokkeestudios',
-  title: 'LOKKEE STUDIOS',
+  name: 'ryzenstudio',
+  title: 'RYZEN STUDIO',
   projectId,
   dataset,
   icon: Logo,

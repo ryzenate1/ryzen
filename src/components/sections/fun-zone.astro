@@ -1,0 +1,210 @@
+---
+import { Container } from '@/components/ui/container';
+import Section from '@/components/ui/section.astro';
+---
+
+<Section id="fun-zone" aria-labelledby="fun-heading">
+  <Container>
+    <div class="flex flex-col items-center justify-center min-h-[80vh] text-center">
+      <div id="initial-question" class="space-y-8">
+        <div class="space-y-4">
+          <h1
+            id="fun-heading"
+            class="text-6xl/tight font-bold text-balance md:text-8xl/tight bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent"
+          >
+            Quick Question! 🤔
+          </h1>
+          <p class="text-neutrals-300 text-xl max-w-2xl mx-auto">
+            Before we dive into the creative chaos, let's get to know each other...
+          </p>
+        </div>
+        
+        <div class="flex gap-6 justify-center flex-wrap">
+          <button 
+            id="boy-btn"
+            class="bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Boy 👦
+          </button>
+          <button 
+            id="girl-btn"
+            class="bg-pink-500 hover:bg-pink-400 text-white px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Girl 👧
+          </button>
+        </div>
+
+        <div class="text-sm text-neutrals-400 italic">
+          💡 Hint: Try selecting different gender for fun 🤪
+        </div>
+      </div>
+
+      <div id="response-message" class="hidden space-y-8">
+        <div class="space-y-4">
+          <h2 
+            id="response-text"
+            class="text-5xl/tight font-bold text-balance md:text-7xl/tight text-primary"
+          >
+            <!-- Response will be inserted here -->
+          </h2>
+          <p id="response-subtext" class="text-neutrals-300 text-xl max-w-3xl mx-auto leading-relaxed">
+            <!-- Subtext will be inserted here -->
+          </p>
+        </div>
+        
+        <div id="confirmation-buttons" class="flex gap-6 justify-center flex-wrap">
+          <button 
+            id="confirm-yes"
+            class="bg-green-500 hover:bg-green-400 text-white px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Yes, I'm sure! ✅
+          </button>
+          <button 
+            id="confirm-no"
+            class="bg-red-500 hover:bg-red-400 text-white px-8 py-4 rounded-full text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Wait, no! �
+          </button>
+        </div>
+        
+        <button 
+          id="explore-btn"
+          class="hidden bg-gradient-to-r from-primary to-purple-500 hover:from-purple-500 hover:to-primary text-white px-12 py-4 rounded-full text-xl font-bold transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-2xl animate-pulse hover:animate-none"
+        >
+          Let's Explore the Magic! ✨
+        </button>
+
+        <button 
+          id="play-btn"
+          class="hidden bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-500 hover:to-yellow-500 text-white px-12 py-4 rounded-full text-xl font-bold transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+        >
+          Wanna play something? 🎮
+        </button>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const boyBtn = document.getElementById('boy-btn');
+    const girlBtn = document.getElementById('girl-btn');
+    const initialQuestion = document.getElementById('initial-question');
+    const responseMessage = document.getElementById('response-message');
+    const responseText = document.getElementById('response-text');
+    const responseSubtext = document.getElementById('response-subtext');
+    const confirmationButtons = document.getElementById('confirmation-buttons');
+    const confirmYes = document.getElementById('confirm-yes');
+    const confirmNo = document.getElementById('confirm-no');
+    const exploreBtn = document.getElementById('explore-btn');
+    const playBtn = document.getElementById('play-btn');
+
+    // Get previous choice from localStorage
+    const previousChoice = localStorage.getItem('fun-gender-choice');
+    let currentChoice: 'boy' | 'girl' | null = null;
+
+    const confirmationMessages = {
+      boy: "Are you sure... you are a boy? 🤔",
+      girl: "Are you sure... you are a girl? 🤔"
+    };
+
+    const finalMessages = {
+      same: {
+        boy: "Good boy! 😎<br>btw you are as silly as me... 🤪",
+        girl: "Good girl! 😊<br>btw you are as silly as me... 🤪"
+      },
+      different: "Aren't you just before clicked on {opposite}? 🤨<br>Huhh suspicious... 😏"
+    };
+
+    const handleChoice = (choice: 'boy' | 'girl') => {
+      currentChoice = choice;
+
+      // Hide initial question with fade out
+      initialQuestion?.classList.add('animate-fadeOut');
+      
+      setTimeout(() => {
+        initialQuestion?.classList.add('hidden');
+        responseText!.innerHTML = confirmationMessages[choice];
+        responseSubtext!.innerHTML = "Think carefully now... 🧐";
+        confirmationButtons?.classList.remove('hidden');
+        responseMessage?.classList.remove('hidden');
+        responseMessage?.classList.add('animate-fadeIn');
+      }, 500);
+    };
+
+    const handleConfirmation = (confirmed: boolean) => {
+      if (confirmed) {
+        // Check if this is different from previous choice
+        const isDifferent = previousChoice && previousChoice !== currentChoice;
+        
+        if (isDifferent) {
+          // Different choice from previous visit - show suspicious message and game button
+          const opposite = previousChoice === 'boy' ? 'boy' : 'girl';
+          responseText!.innerHTML = finalMessages.different.replace('{opposite}', opposite);
+          responseSubtext!.innerHTML = "I see what's happening here... 😂 But hey, I like your sense of humor!";
+          confirmationButtons?.classList.add('hidden');
+          playBtn?.classList.remove('hidden');
+        } else {
+          // Same choice or first time - show normal message
+          responseText!.innerHTML = finalMessages.same[currentChoice!];
+          responseSubtext!.innerHTML = "You seem like someone who appreciates good design and isn't afraid to explore the unknown. Ready to see what creative madness we've cooked up? 🚀";
+          confirmationButtons?.classList.add('hidden');
+          exploreBtn?.classList.remove('hidden');
+        }
+
+        // Save current choice to localStorage for next visit
+        localStorage.setItem('fun-gender-choice', currentChoice!);
+      } else {
+        // User wants to change - go back to initial question
+        responseMessage?.classList.add('animate-fadeOut');
+        setTimeout(() => {
+          responseMessage?.classList.add('hidden');
+          responseMessage?.classList.remove('animate-fadeOut');
+          initialQuestion?.classList.remove('hidden');
+          initialQuestion?.classList.remove('animate-fadeOut');
+          initialQuestion?.classList.add('animate-fadeIn');
+          
+          // Reset buttons
+          confirmationButtons?.classList.remove('hidden');
+          exploreBtn?.classList.add('hidden');
+          playBtn?.classList.add('hidden');
+        }, 500);
+      }
+    };
+
+    boyBtn?.addEventListener('click', () => handleChoice('boy'));
+    girlBtn?.addEventListener('click', () => handleChoice('girl'));
+    
+    confirmYes?.addEventListener('click', () => handleConfirmation(true));
+    confirmNo?.addEventListener('click', () => handleConfirmation(false));
+
+    exploreBtn?.addEventListener('click', () => {
+      window.location.href = '/';
+    });
+
+    playBtn?.addEventListener('click', () => {
+      // Placeholder for future game implementation
+      alert('🎮 Game feature coming soon! Stay tuned for some epic fun! 🚀');
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fadeOut {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+</style>

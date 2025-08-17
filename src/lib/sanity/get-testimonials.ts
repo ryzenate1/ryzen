@@ -16,6 +16,8 @@ type Testimonial = {
 };
 
 function getTestimonials() {
+  // In local dev, allow disabling Sanity fetches to avoid hard failures
+  if (import.meta.env.DISABLE_SANITY) return Promise.resolve([]);
   const query = groq`
     *[_type == "testimonial"] { 
       ...,

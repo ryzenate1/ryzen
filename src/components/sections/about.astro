@@ -1,7 +1,9 @@
 ---
-import kilianPetersImage from '@/assets/images/kilian-peters.jpg';
+import riyazImage from '@/assets/images/riyaz.jpg';
+import { StarsBackground } from '@/components/stars-background';
 import { TypingHeading } from '@/components/typing-heading';
 import { Caption, Paragraph } from '@/components/ui/typography';
+import { AboutSkills } from '@/components/about-skills';
 import { Image } from 'astro:assets';
 
 const headings = [
@@ -22,16 +24,18 @@ const headings = [
 <section
   id="about"
   aria-labelledby="about-heading"
-  class="bg-neutrals-900 relative z-10 w-full"
+  class="relative z-10 w-full bg-neutrals-900 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:mx-auto after:h-full after:w-full after:max-w-7xl after:bg-[radial-gradient(40%_36%_at_50%_0%,rgba(105,25,255,0.04)_0%,rgba(105,25,255,0)_100%,rgba(105,25,255,0)_100%),radial-gradient(32%_20%_at_50%_32%,rgba(105,25,255,0.08)_0%,rgba(105,25,255,0)_100%)]"
 >
+  <StarsBackground client:visible />
   <div
     class="flex w-full items-center max-lg:flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,min(11/12*100%/2,48rem))_minmax(0,min(11/12*100%/2,48rem))_minmax(0,1fr)] 2xl:grid-cols-[minmax(0,1fr)_minmax(0,min(80%/2,48rem))_minmax(0,min(80%/2,48rem))_minmax(0,1fr)]"
   >
     <Image
-      src={kilianPetersImage}
-      alt="Kilian Peters, founder and visionary behind LOKKEE STUDIOS"
+      src={riyazImage}
+      alt="Riyaz, Full-Stack Developer & Kinesiology Enthusiast"
       class="bg-neutrals-800 h-full max-h-svh object-cover object-center grayscale transition-[filter] duration-500 hover:grayscale-0 lg:col-start-1 lg:col-end-3"
     />
+    
     <div class="w-full py-28 max-lg:mx-auto max-lg:w-11/12 max-lg:max-w-7xl lg:ps-10 xl:ps-20">
       <Caption id="about-heading">About</Caption>
       <TypingHeading
@@ -39,12 +43,33 @@ const headings = [
         headings={headings}
       />
       <Paragraph>
-        We at LOKKEE STUDIOS are problem solvers at heart, fueled by a shared passion for <span
-          class="text-neutrals-100">exceptional web development and design from the future</span
-        >. Founder and visionary behind LOKKEE STUDIOS is Kilian Peters, an expert in transforming
-        ideas into future-ready digital realities, with his roots in Hamburg, Germany. Go big or go
-        home!
+        I'm Riyaz, a passionate <span
+          class="text-neutrals-100">Full-Stack Developer & Kinesiology Enthusiast</span
+        > who loves creating exceptional digital experiences. I specialize in transforming
+        ideas into modern, future-ready web applications with a focus on both technical excellence
+        and user experience. Let's build something amazing together!
       </Paragraph>
     </div>
   </div>
+  
+  <!-- Clean Line Divider - 2px thick -->
+  <div class="w-full flex justify-center py-8 lg:pt-0 lg:pb-8">
+    <div class="w-[120%] max-w-none h-0.5 bg-gradient-to-r from-transparent via-neutrals-700 to-transparent"></div>
+  </div>
+  
+  <!-- Terminal Of Truth Section Header -->
+  <div class="mt-8 mb-12 flex flex-col items-center text-center px-4 md:px-8">
+    <p class="border-primary/30 bg-primary/10 text-primary after:animate-shiny-badge-slide after:bg-primary/10 relative mb-4 inline-block overflow-hidden rounded-full border-[0.5px] px-4 py-1 font-medium text-pretty uppercase backdrop-blur-sm text-shadow-lg after:absolute after:inset-0 max-md:text-sm">
+      More About Me
+    </p>
+    <h2 class="text-neutrals-50 mb-4 text-3xl/tight font-bold text-balance md:text-5xl/tight">
+      Terminal Of Truth
+    </h2>
+    <p class="text-neutrals-300 max-w-prose text-base/relaxed">
+      Get to know me, it's wild, funny, and a little crazy. Dive deep and you'll find the code that really makes me, me and what I do and what I love to do.
+    </p>
+  </div>
+  
+  <!-- Skills and Terminal Section -->
+  <AboutSkills client:visible />
 </section>

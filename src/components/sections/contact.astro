@@ -1,5 +1,6 @@
 ---
 import { ContactForm } from '@/components/contact-form';
+import { StarsBackground } from '@/components/stars-background';
 import { Container } from '@/components/ui/container';
 import Section from '@/components/ui/section.astro';
 import { Caption, Heading, Paragraph } from '@/components/ui/typography';
@@ -12,18 +13,19 @@ import { Caption, Heading, Paragraph } from '@/components/ui/typography';
   hasGlowEffect
   class="lg:after:hidden"
 >
+  <StarsBackground client:visible />
   <Container>
+    <div class="mb-16 flex flex-col items-center text-center">
+      <Caption id="contact-heading">Communication</Caption>
+      <Heading>Ready to bring your vision to life?</Heading>
+      <Paragraph>
+        We're excited to work with you and eager for new connections. <span
+          class="text-neutrals-100">Let's start a conversation and create something amazing together</span
+        >.
+      </Paragraph>
+    </div>
     <div class="flex h-full w-full flex-col lg:relative lg:flex-row">
-      <div class="basis-full self-start lg:sticky lg:top-24">
-        <Caption id="contact-heading">Contact</Caption>
-        <Heading>Got a problem to solve?</Heading>
-        <Paragraph>
-          Get your space suit ready and tell us your ideas to develop <span
-            class="text-neutrals-100">your dream web solution</span
-          >.
-        </Paragraph>
-      </div>
-      <div class="mt-10 basis-full lg:ms-10 lg:mt-0 xl:ms-20">
+      <div class="mt-10 basis-full lg:mt-0">
         <ContactForm client:visible />
       </div>
     </div>

@@ -1,8 +1,6 @@
-import lokkeestudiosWordmarkLogoImage from '@/assets/images/logos/lokkeestudios-wordmark.svg';
 import { MobileNavigation } from '@/components/layout/mobile-navigation';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
-import { Image } from '@/components/ui/image';
 import { useScrollThreshold } from '@/hooks/use-scroll-threshold';
 import { cn } from '@/lib/utils';
 
@@ -67,14 +65,14 @@ function Header() {
                 href="/"
                 title="Navigate home"
                 data-astro-prefetch
-                className="hover:animate-jiggle"
+                className="text-neutrals-50 hover:text-white transition-colors duration-200 flex items-baseline gap-1"
               >
-                <Image
-                  metadata={lokkeestudiosWordmarkLogoImage}
-                  isAboveTheFold
-                  alt="LOKKEE STUDIOS"
-                  className="h-3.5 md:h-4"
-                />
+                <span className="font-bold text-lg md:text-xl tracking-wider font-mono uppercase">
+                  RYZEN
+                </span>
+                <span className="font-mono text-lg md:text-xl tracking-wider uppercase">
+                  STUDIO
+                </span>
               </a>
             </div>
             <div className="flex items-center justify-end">

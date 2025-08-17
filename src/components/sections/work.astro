@@ -1,11 +1,11 @@
 ---
-import { ProjectCarousel } from '@/components/project-carousel';
+// import { ProjectCarousel } from '@/components/project-carousel';
 import { Container } from '@/components/ui/container';
 import Section from '@/components/ui/section.astro';
 import { Caption, Heading } from '@/components/ui/typography';
-import { getProjects } from '@/lib/sanity/get-projects';
+// import { getProjects } from '@/lib/sanity/get-projects';
 
-const projects = await getProjects();
+// const projects = await getProjects();
 ---
 
 <Section
@@ -13,16 +13,23 @@ const projects = await getProjects();
   aria-labelledby="work-heading"
   hasBorderTop
   hasGlowEffect
-  class="lg:border-neutrals-600 lg:border-t-[0.5px] lg:before:hidden lg:after:hidden"
+  class="lg:border-neutrals-600 lg:border-t-[0.5px] lg:before:hidden lg:after:hidden py-8 min-h-auto"
 >
   <Container>
     <div class="flex flex-col items-center text-center">
       <Caption id="work-heading">Work</Caption>
-      <Heading>Dig into our universe</Heading>
+      <Heading>Work Showcase</Heading>
     </div>
   </Container>
-  <ProjectCarousel
+  <!-- <ProjectCarousel
     client:idle
     projects={projects}
-  />
+  /> -->
+  
+  <!-- Temporary "Coming Soon" Message with Glow -->
+  <div class="flex flex-col items-center justify-center text-center py-4">
+    <p class="text-neutrals-100 text-2xl md:text-3xl font-bold drop-shadow-[0_0_15px_rgba(105,25,255,0.7)] text-shadow-[0_0_10px_rgba(105,25,255,0.5)]">
+      Coming Soon
+    </p>
+  </div>
 </Section>

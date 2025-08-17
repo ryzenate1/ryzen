@@ -1,8 +1,8 @@
 {
-  "name": "lokkeestudios",
+  "name": "ryzenstudio",
   "author": {
-    "name": "LOKKEE STUDIOS",
-    "url": "https://lokkeestudios.com"
+    "name": "RYZEN STUDIO",
+    "url": "https://ryzenstudio.com"
   },
   "version": "1.0.0",
   "private": true,
@@ -51,7 +51,9 @@
     "react-dom": "19.1.0",
     "react-email": "^4.0.16",
     "react-hook-form": "^7.57.0",
+    "react-icons": "^5.5.0",
     "react-particles": "^2.12.2",
+    "react-simple-typewriter": "^5.0.1",
     "resend": "^4.5.2",
     "sanity": "^3.91.0",
     "sharp": "^0.34.2",

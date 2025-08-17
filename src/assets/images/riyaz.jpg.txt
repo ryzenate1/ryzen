@@ -1,0 +1,4 @@
+// This is a placeholder - the actual image needs to be manually copied
+// The user has provided an image that should replace kilian-peters.jpg
+// Image shows a young man taking a mirror selfie with a green phone
+// The image appears to be a portrait orientation photo

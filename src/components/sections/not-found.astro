@@ -1,10 +1,8 @@
 ---
-import pageNotFoundImage from '@/assets/images/page-not-found.svg';
 import { Container } from '@/components/ui/container';
 import { Icons } from '@/components/ui/icons';
 import Section from '@/components/ui/section.astro';
 import { Caption, Heading, Paragraph } from '@/components/ui/typography';
-import { Image } from 'astro:assets';
 ---
 
 <Section aria-labelledby="page-not-found-heading">
@@ -34,11 +32,5 @@ import { Image } from 'astro:assets';
         </span>
       </a>
     </div>
-    <Image
-      src={pageNotFoundImage}
-      alt=""
-      aria-hidden="true"
-      class="absolute inset-0 top-1/2 w-full -translate-y-1/2 select-none opacity-40"
-    />
   </Container>
 </Section>

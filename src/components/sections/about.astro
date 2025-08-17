@@ -4,7 +4,7 @@ import { StarsBackground } from '@/components/stars-background';
 import { TypingHeading } from '@/components/typing-heading';
 import { Caption, Paragraph } from '@/components/ui/typography';
 import { AboutSkills } from '@/components/about-skills';
-import { Image } from 'astro:assets';
+import { ScrollableImage } from '@/components/scrollable-image';
 
 const headings = [
   'Problem Solvers',
@@ -30,10 +30,11 @@ const headings = [
   <div
     class="flex w-full items-center max-lg:flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,min(11/12*100%/2,48rem))_minmax(0,min(11/12*100%/2,48rem))_minmax(0,1fr)] 2xl:grid-cols-[minmax(0,1fr)_minmax(0,min(80%/2,48rem))_minmax(0,min(80%/2,48rem))_minmax(0,1fr)]"
   >
-    <Image
-      src={riyazImage}
+    <ScrollableImage
+      client:visible
+      src={riyazImage.src}
       alt="Riyaz, Full-Stack Developer & Kinesiology Enthusiast"
-      class="bg-neutrals-800 h-full max-h-svh object-cover object-center grayscale transition-[filter] duration-500 hover:grayscale-0 lg:col-start-1 lg:col-end-3"
+      className="bg-neutrals-800 h-full max-h-svh w-full object-cover object-center lg:col-start-1 lg:col-end-3"
     />
     
     <div class="w-full py-28 max-lg:mx-auto max-lg:w-11/12 max-lg:max-w-7xl lg:ps-10 xl:ps-20">

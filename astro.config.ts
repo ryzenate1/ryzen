@@ -1,12 +1,12 @@
+import { defineConfig } from 'astro/config';
+import vercelStatic from '@astrojs/vercel/static'; // 👈 static adapter
 import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
 import sanity from '@sanity/astro';
 import tailwindcss from '@tailwindcss/vite';
 import robotsTxt from 'astro-robots-txt';
 import webmanifest from 'astro-webmanifest';
-import { defineConfig } from 'astro/config';
 import serviceWorker from 'astrojs-service-worker';
 import { loadEnv } from 'vite';
 import { siteConfig } from './src/lib/config/site';
@@ -17,21 +17,17 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
   '',
 );
 
-if (!PUBLIC_SANITY_PROJECT_ID || !PUBLIC_SANITY_DATASET)
+if (!PUBLIC_SANITY_PROJECT_ID || !PUBLIC_SANITY_DATASET) {
   throw new Error(
     'Both environment variables PUBLIC_SANITY_PROJECT_ID and PUBLIC_SANITY_DATASET must be set in order for the site to properly function',
   );
+}
 
 const { name, backgroundColor, themeColor, url } = siteConfig;
 
-// https://astro.build/config
-const config = defineConfig({
+export default defineConfig({
   site: url,
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+  adapter: vercelStatic(), // 👈 static adapter (fixes serverless warning)
   prefetch: {
     prefetchAll: true,
   },
@@ -79,5 +75,3 @@ const config = defineConfig({
     }),
   ],
 });
-
-export default config;

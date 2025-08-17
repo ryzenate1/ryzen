@@ -1,77 +1,84 @@
-import { defineConfig } from 'astro/config';
-import vercelStatic from '@astrojs/vercel/static'; // 👈 static adapter
-import partytown from '@astrojs/partytown';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
-import sanity from '@sanity/astro';
-import tailwindcss from '@tailwindcss/vite';
-import robotsTxt from 'astro-robots-txt';
-import webmanifest from 'astro-webmanifest';
-import serviceWorker from 'astrojs-service-worker';
-import { loadEnv } from 'vite';
-import { siteConfig } from './src/lib/config/site';
+import { defineConfig } from "astro/config";
 
-const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
-  import.meta.env.MODE,
-  process.cwd(),
-  '',
-);
+// Astro Integrations
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel/serverless";
+import partytown from "@astrojs/partytown";
+import tailwind from "@tailwindcss/vite";
+import robotsTxt from "astro-robots-txt";
+import seo from "astro-seo";
+import webmanifest from "astro-webmanifest";
+import serviceWorker from "astrojs-service-worker";
 
-if (!PUBLIC_SANITY_PROJECT_ID || !PUBLIC_SANITY_DATASET) {
-  throw new Error(
-    'Both environment variables PUBLIC_SANITY_PROJECT_ID and PUBLIC_SANITY_DATASET must be set in order for the site to properly function',
-  );
-}
-
-const { name, backgroundColor, themeColor, url } = siteConfig;
-
+// Config
 export default defineConfig({
-  site: url,
-  adapter: vercelStatic(), // 👈 static adapter (fixes serverless warning)
-  prefetch: {
-    prefetchAll: true,
-  },
-  image: {
-    domains: ['cdn.sanity.io'],
-    // Use passthrough service to avoid Sharp dependency issues
-    service: { entrypoint: 'astro/assets/services/noop' },
-  },
-  experimental: {
-    clientPrerender: true,
-  },
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  site: "https://ryzenstudio.com", // Required for sitemap, SEO, manifest
+  output: "server", // Needed for SSR & Vercel
+  adapter: vercel(),
+
   integrations: [
-    sanity({
-      projectId: PUBLIC_SANITY_PROJECT_ID,
-      dataset: PUBLIC_SANITY_DATASET,
-      useCdn: false,
-      studioBasePath: '/admin',
-    }),
     react(),
+    sitemap(),
     partytown({
+      // Moves third-party scripts off the main thread
       config: {
-        forward: ['dataLayer.push'],
+        forward: ["dataLayer.push"],
       },
     }),
-    serviceWorker(),
-    sitemap(),
-    robotsTxt(),
-    webmanifest({
-      name,
-      short_name: name,
-      background_color: backgroundColor,
-      theme_color: themeColor,
-      display: 'standalone',
-      prefer_related_applications: true,
-      start_url: '/',
-      icon: './src/assets/images/favicon.svg',
-      config: {
-        outfile: 'site.webmanifest',
-        iconPurpose: ['any', 'maskable'],
-        insertAppleTouchLinks: true,
+    robotsTxt({
+      policy: [{ userAgent: "*", allow: "/" }],
+      sitemap: "https://ryzenstudio.com/sitemap-index.xml",
+      host: "https://ryzenstudio.com",
+    }),
+    seo({
+      title: "Ryzen Studio",
+      description: "Creative studio specializing in modern design & web solutions.",
+      canonical: "https://ryzenstudio.com",
+      openGraph: {
+        type: "website",
+        image: "https://ryzenstudio.com/og-image.png",
       },
+      twitter: {
+        card: "summary_large_image",
+        site: "@ryzenstudio",
+      },
+    }),
+    webmanifest({
+      name: "Ryzen Studio",
+      short_name: "Ryzen",
+      description: "Creative studio specializing in modern design & web solutions.",
+      start_url: "/",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#000000",
+      icons: [
+        {
+          src: "/icon-192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "/icon-512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
+    }),
+    serviceWorker({
+      strategies: "generateSW", // Or "injectManifest" if you customize
+      register: true,
     }),
   ],
+
+  vite: {
+    plugins: [tailwind()],
+    build: {
+      target: "esnext", // Optimize for modern browsers
+    },
+  },
+
+  experimental: {
+    env: true, // Allows usage of .env with @t3-oss/env-core
+  },
 });

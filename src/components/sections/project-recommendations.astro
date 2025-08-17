@@ -1,27 +1,27 @@
 ---
-import ProjectCard from '@/components/project-card.astro';
-import { Container } from '@/components/ui/container';
-import { Icons } from '@/components/ui/icons';
-import Section from '@/components/ui/section.astro';
-import { Caption, Heading } from '@/components/ui/typography';
-import { type Project, getProjects } from '@/lib/sanity/get-projects';
-import { shuffleArray } from '@/lib/utils';
+// import ProjectCard from '@/components/project-card.astro';
+// import { Container } from '@/components/ui/container';
+// import { Icons } from '@/components/ui/icons';
+// import Section from '@/components/ui/section.astro';
+// import { Caption, Heading } from '@/components/ui/typography';
+// import { type Project, getProjects } from '@/lib/sanity/get-projects';
+// import { shuffleArray } from '@/lib/utils';
 
-type Props = {
-  project: Project;
-};
+// type Props = {
+//   project: Project;
+// };
 
-const { project } = Astro.props;
+// const { project } = Astro.props;
 
-const projects = await getProjects();
+// const projects = await getProjects();
 
-const otherSimilarProjects = shuffleArray(projects)
-  .filter((currentProject) => currentProject._id !== project._id)
-  .filter((currentProject) => currentProject.tags?.some((tag) => project.tags?.includes(tag)))
-  .slice(0, 2);
+// const otherSimilarProjects = shuffleArray(projects)
+//   .filter((currentProject) => currentProject._id !== project._id)
+//   .filter((currentProject) => currentProject.tags?.some((tag) => project.tags?.includes(tag)))
+//   .slice(0, 2);
 ---
 
-<Section
+<!-- <Section
   aria-labelledby="related-projects-heading"
   hasGlowEffect
   hasBorderTop
@@ -50,4 +50,4 @@ const otherSimilarProjects = shuffleArray(projects)
       </a>
     </div>
   </Container>
-</Section>
+</Section> -->

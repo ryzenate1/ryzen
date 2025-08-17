@@ -1,4 +1,4 @@
-import { generateImageSizeProps, type Image } from '@/lib/sanity/sanity-image';
+// import { generateImageSizeProps, type Image } from '@/lib/sanity/sanity-image';
 import { type ComponentProps } from 'react';
 
 function SanityImage({
@@ -11,7 +11,7 @@ function SanityImage({
   ref,
   ...props
 }: {
-  image: Image;
+  // image: Image;
   sizes?: string | undefined;
   maxWidth?: number | undefined;
   width?: number | undefined;
@@ -20,13 +20,13 @@ function SanityImage({
 } & ComponentProps<'img'>) {
   return (
     <img
-      style={{
-        backgroundColor: image.asset.metadata.palette.dominant.background,
-      }}
-      alt={image.alt}
+      // style={{
+      //   backgroundColor: image.asset.metadata.palette.dominant.background,
+      // }}
+      // alt={image.alt}
       loading={isAboveTheFold ? 'eager' : 'lazy'}
       decoding={isAboveTheFold ? 'sync' : 'async'}
-      {...generateImageSizeProps({ image, sizes, maxWidth, width, height })}
+      // {...generateImageSizeProps({ image, sizes, maxWidth, width, height })}
       ref={ref}
       {...props}
     />

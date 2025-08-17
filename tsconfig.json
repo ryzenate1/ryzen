@@ -1,76 +1,28 @@
-import { defineConfig } from "astro/config";
-
-// Integrations
-import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel/serverless";
-import partytown from "@astrojs/partytown";
-
-// SEO & Extras
-import robotsTxt from "astro-robots-txt";
-import webmanifest from "astro-webmanifest";
-import { SEO } from "astro-seo";
-
-// Tailwind (via Vite plugin)
-import tailwindcss from "@tailwindcss/vite";
-
-export default defineConfig({
-  site: "https://ryzenstudio.com", // your production domain
-  output: "server", // required for Vercel serverless
-  adapter: vercel(),
-
-  integrations: [
-    react(),
-    sitemap(),
-    partytown({
-      // Example: forward analytics to web worker
-      forward: ["dataLayer.push"],
-    }),
-    robotsTxt(),
-    webmanifest({
-      name: "RYZEN STUDIO",
-      short_name: "Ryzen",
-      description: "Creative studio website built with Astro + React.",
-      background_color: "#000000",
-      theme_color: "#000000",
-      display: "standalone",
-      icons: [
-        {
-          src: "/icons/icon-192x192.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "/icons/icon-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-        },
-      ],
-    }),
-    SEO({
-      title: "RYZEN STUDIO",
-      description: "Creative studio website built with Astro + React + Tailwind.",
-      openGraph: {
-        type: "website",
-        url: "https://ryzenstudio.com",
-        siteName: "RYZEN STUDIO",
-        images: [
-          {
-            url: "https://ryzenstudio.com/og-image.png",
-            width: 1200,
-            height: 630,
-            alt: "RYZEN STUDIO Preview",
-          },
-        ],
-      },
-      twitter: {
-        card: "summary_large_image",
-        site: "@ryzenstudio",
-      },
-    }),
-  ],
-
-  vite: {
-    plugins: [tailwindcss()],
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "moduleResolution": "bundler",
+    "types": [
+      "vite/client",
+      "astro/client"
+    ]
   },
-});
+  "include": [
+    ".astro/types.d.ts",
+    "src",
+    "astro.config.ts",
+    "env.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

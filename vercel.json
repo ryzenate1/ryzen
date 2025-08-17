@@ -3,8 +3,6 @@
   "outputDirectory": "dist",
   "devCommand": "pnpm run dev",
   "installCommand": "pnpm install",
-  "framework": "astro",
-  "regions": ["all"],
   "functions": {
     "src/pages/api/**/*.ts": {
       "runtime": "nodejs18.x"

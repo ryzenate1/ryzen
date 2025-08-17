@@ -2,21 +2,20 @@ import { defineConfig } from "astro/config";
 
 // Astro Integrations
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel/serverless";
+import sitemap from "@astrojs/sitemap"; // Required for sitemap generation
+import vercel from "@astrojs/vercel/static";
 import partytown from "@astrojs/partytown";
 import tailwind from "@tailwindcss/vite";
 import robotsTxt from "astro-robots-txt";
-import seo from "astro-seo";
 import webmanifest from "astro-webmanifest";
 import serviceWorker from "astrojs-service-worker";
 
 // Config
 export default defineConfig({
   site: "https://ryzenstudio.com", // Required for sitemap, SEO, manifest
-  output: "server", // Needed for SSR & Vercel
+  output: "static", // Changed to static output for Vercel free plan
+  // Adapter should be configured for static deployment.
   adapter: vercel(),
-
   integrations: [
     react(),
     sitemap(),
@@ -26,24 +25,7 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }),
-    robotsTxt({
-      policy: [{ userAgent: "*", allow: "/" }],
-      sitemap: "https://ryzenstudio.com/sitemap-index.xml",
-      host: "https://ryzenstudio.com",
-    }),
-    seo({
-      title: "Ryzen Studio",
-      description: "Creative studio specializing in modern design & web solutions.",
-      canonical: "https://ryzenstudio.com",
-      openGraph: {
-        type: "website",
-        image: "https://ryzenstudio.com/og-image.png",
-      },
-      twitter: {
-        card: "summary_large_image",
-        site: "@ryzenstudio",
-      },
-    }),
+    robotsTxt(),
     webmanifest({
       name: "Ryzen Studio",
       short_name: "Ryzen",
@@ -76,9 +58,5 @@ export default defineConfig({
     build: {
       target: "esnext", // Optimize for modern browsers
     },
-  },
-
-  experimental: {
-    env: true, // Allows usage of .env with @t3-oss/env-core
   },
 });

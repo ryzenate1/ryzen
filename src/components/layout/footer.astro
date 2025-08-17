@@ -7,51 +7,51 @@ import { siteConfig } from '@/lib/config/site';
 const primaryLinks = [
   {
     label: 'About',
-    href: '/#about',
+    href: '#',
   },
   {
     label: 'Work',
-    href: '/#work',
+    href: '#',
   },
   {
     label: 'Customer Stories',
-    href: '/#stories',
+    href: '#',
   },
   {
     label: 'Services',
-    href: '/#services',
+    href: '#',
   },
   {
     label: 'Contact',
-    href: '/#contact',
+    href: '#',
   },
   {
     label: 'Source code',
-    href: '/#source-code',
+    href: '#',
   },
 ] as const;
 
 const secondaryLinks = [
   {
     label: 'Imprint',
-    href: '/imprint',
+    href: '#',
   },
 ] as const;
 
 const socials = [
   {
     label: 'View GitHub profile',
-    href: siteConfig.links.github,
+    href: '#',
     icon: Icons.GitHub,
   },
   {
     label: 'View Instagram profile',
-    href: siteConfig.links.instagram,
+    href: '#',
     icon: Icons.Instagram,
   },
   {
     label: 'View LinkedIn profile',
-    href: siteConfig.links.linkedin,
+    href: '#',
     icon: Icons.LinkedIn,
   },
 ] as const;
@@ -70,6 +70,7 @@ const socials = [
         primaryLinks.map((link) => (
           <a
             href={link.href}
+            onclick="alert('Coming soon'); return false;"
             class="text-neutrals-300 hover:text-neutrals-50 focus-visible:text-neutrals-50 text-sm uppercase transition-colors"
           >
             {link.label}
@@ -88,6 +89,7 @@ const socials = [
             <a
               class="text-neutrals-300 hover:text-neutrals-50 focus-visible:text-neutrals-50 text-xs uppercase transition-colors"
               href={link.href}
+              onclick="alert('Coming soon'); return false;"
             >
               {link.label}
             </a>
@@ -103,6 +105,7 @@ const socials = [
             <li>
               <a
                 href={href}
+                onclick="alert('Coming soon'); return false;"
                 title={label}
                 aria-label={label}
                 rel="noreferrer"
